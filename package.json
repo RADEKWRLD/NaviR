@@ -1,21 +1,16 @@
 {
   "name": "navir",
   "version": "1.0.0",
-  "description": "A modern navigation page",
-  "main": "index.html",
-  "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.4.0",
-    "gsap": "^3.12.5",
-    "vite": "^6.3.5"
-  },
-  "devDependencies": {
-    "wrangler": "^4.16.1"
-  },
+  "description": "A modern navigation page browser extension",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "host": "vite --host",
-    "deploy": "npm run build && wrangler deploy"
+    "host": "vite --host"
+  },
+  "author": "Radek",
+  "license": "MIT",
+  "devDependencies": {
+    "imagemagick": "^0.1.3"
   }
 }
