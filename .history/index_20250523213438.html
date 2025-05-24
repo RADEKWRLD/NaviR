@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的导航页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .link-item {
+            text-decoration: none;
+            color: #666;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .link-item:hover {
+            background: #f0f0f0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-section">
+            <h2 class="section-title">常用网站</h2>
+            <div class="link-grid">
+                <a href="https://www.google.com" class="link-item">Google</a>
+                <a href="https://www.github.com" class="link-item">GitHub</a>
+                <a href="https://www.bilibili.com" class="link-item">哔哩哔哩</a>
+                <a href="https://www.zhihu.com" class="link-item">知乎</a>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <h2 class="section-title">学习资源</h2>
+            <div class="link-grid">
+                <a href="https://www.w3school.com.cn" class="link-item">W3School</a>
+                <a href="https://www.runoob.com" class="link-item">菜鸟教程</a>
+                <a href="https://www.coursera.org" class="link-item">Coursera</a>
+                <a href="https://www.udemy.com" class="link-item">Udemy</a>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <h2 class="section-title">工具网站</h2>
+            <div class="link-grid">
+                <a href="https://www.canva.com" class="link-item">Canva</a>
+                <a href="https://www.remove.bg" class="link-item">Remove.bg</a>
+                <a href="https://www.tinyjpg.com" class="link-item">TinyJPG</a>
+                <a href="https://www.unsplash.com" class="link-item">Unsplash</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

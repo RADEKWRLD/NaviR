@@ -1,0 +1,1677 @@
+@font-face {
+    font-family: 'Kaushan Script';
+    src: url('/Kaushan_Script/KaushanScript-Regular.ttf') format('truetype');
+}
+
+:root {
+    font-size: 15px;
+    /* Default color scheme */
+    --primary-color: #e493d0;
+    --gradient-1: rgba(235, 105, 78, 1);
+    --gradient-2: rgba(243, 11, 164, 1);
+    --gradient-3: rgba(254, 234, 131, 1);
+    --gradient-4: rgba(170, 142, 245, 1);
+    --gradient-5: rgba(248, 192, 147, 1);
+    /* Button colors */
+    --button-gradient-start: #e493d0;
+    --button-gradient-end: #d17dbd;
+    --button-hover-start: #d17dbd;
+    --button-hover-end: #e493d0;
+    --button-shadow: rgba(228, 147, 208, 0.3);
+    --button-hover-shadow: rgba(228, 147, 208, 0.4);
+}
+
+/* Color scheme 1 - Pink Theme */
+[data-theme="pink"] {
+    --primary-color: #e493d0;
+    --gradient-1: rgba(235, 105, 78, 1);
+    --gradient-2: rgba(243, 11, 164, 1);
+    --gradient-3: rgba(254, 234, 131, 1);
+    --gradient-4: rgba(170, 142, 245, 1);
+    --gradient-5: rgba(248, 192, 147, 1);
+    --button-gradient-start: #e493d0;
+    --button-gradient-end: #d17dbd;
+    --button-hover-start: #d17dbd;
+    --button-hover-end: #e493d0;
+    --button-shadow: rgba(228, 147, 208, 0.3);
+    --button-hover-shadow: rgba(228, 147, 208, 0.4);
+}
+
+/* Color scheme 3 - Forest */
+[data-theme="forest"] {
+    --primary-color: #1e293b;
+    --gradient-1: #12001B;
+    --gradient-2: #000000;
+    --gradient-3: #040EFF;
+    --gradient-4: #8000FF;
+    --gradient-5: #00B6B6;
+    --button-gradient-start: #1e293b;
+    --button-gradient-end: #040EFF;
+    --button-hover-start: #8000FF;
+    --button-hover-end: #00B6B6;
+    --button-shadow: rgba(0, 0, 0, 0.6);
+    --button-hover-shadow: rgba(0, 0, 0, 0.8);
+}
+
+/* Color scheme 2 - Deep Ocean */
+[data-theme="deep-ocean"] {
+    --primary-color: #1a237e;
+    --gradient-1: rgba(26, 35, 126, 1);
+    --gradient-2: rgba(13, 71, 161, 1);
+    --gradient-3: rgba(25, 118, 210, 1);
+    --gradient-4: rgba(2, 136, 209, 1);
+    --gradient-5: rgba(0, 188, 212, 1);
+    --button-gradient-start: #1a237e;
+    --button-gradient-end: #0d47a1;
+    --button-hover-start: #0d47a1;
+    --button-hover-end: #1a237e;
+    --button-shadow: rgba(26, 35, 126, 0.3);
+    --button-hover-shadow: rgba(26, 35, 126, 0.4);
+}
+
+/* Color scheme 4 - Sunset */
+[data-theme="sunset"] {
+    --primary-color: #d32f2f;
+    --gradient-1: rgba(211, 47, 47, 1);
+    --gradient-2: rgba(244, 67, 54, 1);
+    --gradient-3: rgba(255, 87, 34, 1);
+    --gradient-4: rgba(255, 152, 0, 1);
+    --gradient-5: rgba(255, 193, 7, 1);
+    --button-gradient-start: #d32f2f;
+    --button-gradient-end: #b71c1c;
+    --button-hover-start: #b71c1c;
+    --button-hover-end: #d32f2f;
+    --button-shadow: rgba(211, 47, 47, 0.3);
+    --button-hover-shadow: rgba(211, 47, 47, 0.4);
+}
+
+/* Color scheme 5 - Neon */
+[data-theme="neon"] {
+    --primary-color: #00e5ff;
+    --gradient-1: rgba(0, 229, 255, 1);
+    --gradient-2: rgba(0, 255, 128, 1);
+    --gradient-3: rgba(255, 0, 255, 1);
+    --gradient-4: rgba(255, 255, 0, 1);
+    --gradient-5: rgba(255, 0, 128, 1);
+    --button-gradient-start: #00e5ff;
+    --button-gradient-end: #00b8d4;
+    --button-hover-start: #00b8d4;
+    --button-hover-end: #00e5ff;
+    --button-shadow: rgba(0, 229, 255, 0.3);
+    --button-hover-shadow: rgba(0, 229, 255, 0.4);
+}
+
+/* Color scheme 6 - Royal */
+[data-theme="royal"] {
+    --primary-color: #4a148c;
+    --gradient-1: rgba(74, 20, 140, 1);
+    --gradient-2: rgba(123, 31, 162, 1);
+    --gradient-3: rgba(156, 39, 176, 1);
+    --gradient-4: rgba(186, 104, 200, 1);
+    --gradient-5: rgba(233, 30, 99, 1);
+    --button-gradient-start: #4a148c;
+    --button-gradient-end: #7b1fa2;
+    --button-hover-start: #7b1fa2;
+    --button-hover-end: #4a148c;
+    --button-shadow: rgba(74, 20, 140, 0.3);
+    --button-hover-shadow: rgba(74, 20, 140, 0.4);
+}
+
+/* Color scheme 7 - Desert */
+[data-theme="desert"] {
+    --primary-color: #bf360c;
+    --gradient-1: rgba(191, 54, 12, 1);
+    --gradient-2: rgba(230, 81, 0, 1);
+    --gradient-3: rgba(255, 112, 67, 1);
+    --gradient-4: rgba(255, 171, 145, 1);
+    --gradient-5: rgba(255, 204, 188, 1);
+    --button-gradient-start: #bf360c;
+    --button-gradient-end: #e65100;
+    --button-hover-start: #e65100;
+    --button-hover-end: #bf360c;
+    --button-shadow: rgba(191, 54, 12, 0.3);
+    --button-hover-shadow: rgba(191, 54, 12, 0.4);
+}
+
+/* Color scheme 8 - Aurora */
+[data-theme="aurora"] {
+    --primary-color: #006064;
+    --gradient-1: rgba(0, 96, 100, 1);
+    --gradient-2: rgba(0, 188, 212, 1);
+    --gradient-3: rgba(0, 229, 255, 1);
+    --gradient-4: rgba(77, 208, 225, 1);
+    --gradient-5: rgba(178, 235, 242, 1);
+    --button-gradient-start: #006064;
+    --button-gradient-end: #00838f;
+    --button-hover-start: #00838f;
+    --button-hover-end: #006064;
+    --button-shadow: rgba(0, 96, 100, 0.3);
+    --button-hover-shadow: rgba(0, 96, 100, 0.4);
+}
+
+/* Color scheme 9 - Cherry */
+[data-theme="cherry"] {
+    --primary-color: #880e4f;
+    --gradient-1: rgba(136, 14, 79, 1);
+    --gradient-2: rgba(194, 24, 91, 1);
+    --gradient-3: rgba(233, 30, 99, 1);
+    --gradient-4: rgba(244, 143, 177, 1);
+    --gradient-5: rgba(248, 187, 208, 1);
+    --button-gradient-start: #880e4f;
+    --button-gradient-end: #c2185b;
+    --button-hover-start: #c2185b;
+    --button-hover-end: #880e4f;
+    --button-shadow: rgba(136, 14, 79, 0.3);
+    --button-hover-shadow: rgba(136, 14, 79, 0.4);
+}
+
+/* Color scheme 10 - Emerald */
+[data-theme="emerald"] {
+    --primary-color: #004d40;
+    --gradient-1: rgba(0, 77, 64, 1);
+    --gradient-2: rgba(0, 105, 92, 1);
+    --gradient-3: rgba(0, 150, 136, 1);
+    --gradient-4: rgba(38, 166, 154, 1);
+    --gradient-5: rgba(77, 182, 172, 1);
+    --button-gradient-start: #004d40;
+    --button-gradient-end: #00695c;
+    --button-hover-start: #00695c;
+    --button-hover-end: #004d40;
+    --button-shadow: rgba(0, 77, 64, 0.3);
+    --button-hover-shadow: rgba(0, 77, 64, 0.4);
+}
+
+/* Color scheme 11 - Dark Night */
+[data-theme="dark-night"] {
+    --primary-color: #1a1a1a;
+    --gradient-1: rgba(26, 26, 26, 1);
+    --gradient-2: rgba(45, 45, 45, 1);
+    --gradient-3: rgba(66, 66, 66, 1);
+    --gradient-4: rgba(97, 97, 97, 1);
+    --gradient-5: rgba(158, 158, 158, 1);
+    --button-gradient-start: #424242;
+    --button-gradient-end: #212121;
+    --button-hover-start: #212121;
+    --button-hover-end: #424242;
+    --button-shadow: rgba(0, 0, 0, 0.3);
+    --button-hover-shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* Color scheme 12 - Pure White */
+[data-theme="pure-white"] {
+    --primary-color: #ffffff;
+    --gradient-1: rgba(255, 255, 255, 1);
+    --gradient-2: rgba(245, 245, 245, 1);
+    --gradient-3: rgba(238, 238, 238, 1);
+    --gradient-4: rgba(224, 224, 224, 1);
+    --gradient-5: rgba(189, 189, 189, 1);
+    --button-gradient-start: #e0e0e0;
+    --button-gradient-end: #bdbdbd;
+    --button-hover-start: #bdbdbd;
+    --button-hover-end: #e0e0e0;
+    --button-shadow: rgba(0, 0, 0, 0.1);
+    --button-hover-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* Color scheme 13 - Cyberpunk */
+[data-theme="cyberpunk"] {
+    --primary-color: #ff00ff;
+    --gradient-1: rgba(255, 0, 255, 1);
+    --gradient-2: rgba(0, 255, 255, 1);
+    --gradient-3: rgba(255, 255, 0, 1);
+    --gradient-4: rgba(0, 255, 0, 1);
+    --gradient-5: rgba(255, 0, 0, 1);
+    --button-gradient-start: #ff00ff;
+    --button-gradient-end: #00ffff;
+    --button-hover-start: #00ffff;
+    --button-hover-end: #ff00ff;
+    --button-shadow: rgba(255, 0, 255, 0.3);
+    --button-hover-shadow: rgba(255, 0, 255, 0.4);
+}
+
+/* Color scheme 14 - Pastel */
+[data-theme="pastel"] {
+    --primary-color: #ffb3ba;
+    --gradient-1: rgba(255, 179, 186, 1);
+    --gradient-2: rgba(255, 223, 186, 1);
+    --gradient-3: rgba(255, 255, 186, 1);
+    --gradient-4: rgba(186, 255, 201, 1);
+    --gradient-5: rgba(186, 225, 255, 1);
+    --button-gradient-start: #ffb3ba;
+    --button-gradient-end: #ff8a98;
+    --button-hover-start: #ff8a98;
+    --button-hover-end: #ffb3ba;
+    --button-shadow: rgba(255, 179, 186, 0.3);
+    --button-hover-shadow: rgba(255, 179, 186, 0.4);
+}
+
+/* Color scheme 15 - Midnight */
+[data-theme="midnight"] {
+    --primary-color: #0a192f;
+    --gradient-1: rgba(10, 25, 47, 1);
+    --gradient-2: rgba(17, 34, 64, 1);
+    --gradient-3: rgba(24, 43, 81, 1);
+    --gradient-4: rgba(31, 52, 98, 1);
+    --gradient-5: rgba(38, 61, 115, 1);
+    --button-gradient-start: #0a192f;
+    --button-gradient-end: #172a45;
+    --button-hover-start: #172a45;
+    --button-hover-end: #0a192f;
+    --button-shadow: rgba(10, 25, 47, 0.3);
+    --button-hover-shadow: rgba(10, 25, 47, 0.4);
+}
+
+/* Color scheme 16 - Lavender */
+[data-theme="lavender"] {
+    --primary-color: #e6e6fa;
+    --gradient-1: rgba(230, 230, 250, 1);
+    --gradient-2: rgba(216, 191, 216, 1);
+    --gradient-3: rgba(221, 160, 221, 1);
+    --gradient-4: rgba(218, 112, 214, 1);
+    --gradient-5: rgba(199, 21, 133, 1);
+    --button-gradient-start: #e6e6fa;
+    --button-gradient-end: #d8bfd8;
+    --button-hover-start: #d8bfd8;
+    --button-hover-end: #e6e6fa;
+    --button-shadow: rgba(230, 230, 250, 0.3);
+    --button-hover-shadow: rgba(230, 230, 250, 0.4);
+}
+
+/* Color scheme 17 - Ocean */
+[data-theme="ocean"] {
+    --primary-color: #0077be;
+    --gradient-1: rgba(0, 119, 190, 1);
+    --gradient-2: rgba(0, 105, 148, 1);
+    --gradient-3: rgba(0, 91, 106, 1);
+    --gradient-4: rgba(0, 77, 64, 1);
+    --gradient-5: rgba(0, 63, 22, 1);
+    --button-gradient-start: #0077be;
+    --button-gradient-end: #005f94;
+    --button-hover-start: #005f94;
+    --button-hover-end: #0077be;
+    --button-shadow: rgba(0, 119, 190, 0.3);
+    --button-hover-shadow: rgba(0, 119, 190, 0.4);
+}
+
+/* Color scheme 18 - Autumn */
+[data-theme="autumn"] {
+    --primary-color: #d35400;
+    --gradient-1: rgba(211, 84, 0, 1);
+    --gradient-2: rgba(230, 126, 34, 1);
+    --gradient-3: rgba(243, 156, 18, 1);
+    --gradient-4: rgba(241, 196, 15, 1);
+    --gradient-5: rgba(211, 84, 0, 1);
+    --button-gradient-start: #d35400;
+    --button-gradient-end: #e67e22;
+    --button-hover-start: #e67e22;
+    --button-hover-end: #d35400;
+    --button-shadow: rgba(211, 84, 0, 0.3);
+    --button-hover-shadow: rgba(211, 84, 0, 0.4);
+}
+
+/* Color scheme 19 - Mint */
+[data-theme="mint"] {
+    --primary-color: #98ff98;
+    --gradient-1: rgba(152, 255, 152, 1);
+    --gradient-2: rgba(144, 238, 144, 1);
+    --gradient-3: rgba(0, 255, 127, 1);
+    --gradient-4: rgba(0, 255, 0, 1);
+    --gradient-5: rgba(50, 205, 50, 1);
+    --button-gradient-start: #98ff98;
+    --button-gradient-end: #90ee90;
+    --button-hover-start: #90ee90;
+    --button-hover-end: #98ff98;
+    --button-shadow: rgba(152, 255, 152, 0.3);
+    --button-hover-shadow: rgba(152, 255, 152, 0.4);
+}
+
+/* Color scheme 20 - Galaxy */
+[data-theme="galaxy"] {
+    --primary-color: #2c003e;
+    --gradient-1: rgba(44, 0, 62, 1);
+    --gradient-2: rgba(72, 0, 72, 1);
+    --gradient-3: rgba(100, 0, 82, 1);
+    --gradient-4: rgba(128, 0, 92, 1);
+    --gradient-5: rgba(156, 0, 102, 1);
+    --button-gradient-start: #2c003e;
+    --button-gradient-end: #4a004a;
+    --button-hover-start: #4a004a;
+    --button-hover-end: #2c003e;
+    --button-shadow: rgba(44, 0, 62, 0.3);
+    --button-hover-shadow: rgba(44, 0, 62, 0.4);
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    background-image:
+        radial-gradient(closest-side, var(--gradient-1), transparent),
+        radial-gradient(closest-side, var(--gradient-2), transparent),
+        radial-gradient(closest-side, var(--gradient-3), transparent),
+        radial-gradient(closest-side, var(--gradient-4), transparent),
+        radial-gradient(closest-side, var(--gradient-5), transparent);
+    background-size:
+        130vmax 130vmax,
+        80vmax 80vmax,
+        90vmax 90vmax,
+        110vmax 110vmax,
+        90vmax 90vmax;
+    background-position:
+        -80vmax -80vmax,
+        60vmax -30vmax,
+        10vmax 10vmax,
+        -30vmax -10vmax,
+        50vmax 50vmax;
+    background-repeat: no-repeat;
+    animation: 10s movement linear infinite;
+    overflow: hidden;
+}
+
+@keyframes movement {
+
+    0%,
+    100% {
+        background-size:
+            130vmax 130vmax,
+            80vmax 80vmax,
+            90vmax 90vmax,
+            110vmax 110vmax,
+            90vmax 90vmax;
+        background-position:
+            -80vmax -80vmax,
+            60vmax -30vmax,
+            10vmax 10vmax,
+            -30vmax -10vmax,
+            50vmax 50vmax;
+    }
+
+    25% {
+        background-size:
+            100vmax 100vmax,
+            90vmax 90vmax,
+            100vmax 100vmax,
+            90vmax 90vmax,
+            60vmax 60vmax;
+        background-position:
+            -60vmax -90vmax,
+            50vmax -40vmax,
+            0vmax -20vmax,
+            -40vmax -20vmax,
+            40vmax 60vmax;
+    }
+
+    50% {
+        background-size:
+            80vmax 80vmax,
+            110vmax 110vmax,
+            80vmax 80vmax,
+            60vmax 60vmax,
+            80vmax 80vmax;
+        background-position:
+            -50vmax -70vmax,
+            40vmax -30vmax,
+            10vmax 0vmax,
+            20vmax 10vmax,
+            30vmax 70vmax;
+    }
+
+    75% {
+        background-size:
+            90vmax 90vmax,
+            90vmax 90vmax,
+            100vmax 100vmax,
+            90vmax 90vmax,
+            70vmax 70vmax;
+        background-position:
+            -50vmax -40vmax,
+            50vmax -30vmax,
+            20vmax 0vmax,
+            -10vmax 10vmax,
+            40vmax 60vmax;
+    }
+}
+
+#main {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    transform: translateY(-5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#clock {
+    font-size: 4rem;
+    color: #fff;
+    font-family: 'Kaushan Script', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
+                 4px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+#clock .separator {
+    display: inline-block;
+    opacity: 1;
+}
+
+#clock span.blink-separator .separator {
+    animation: separatorBlink 1s ease-in-out infinite;
+}
+
+@keyframes separatorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+}
+
+.search-container {
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 1rem;
+}
+
+#search-form {
+    display: flex;
+    gap: 0.8rem;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 0.6rem;
+    border-radius: 50px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+#search-form:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+#search-input {
+    flex: 1;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #333;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+#search-input:focus {
+    background: #fff;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05),
+        0 0 0 3px rgba(228, 147, 208, 0.2);
+}
+
+#search-input::placeholder {
+    color: #999;
+    font-weight: 500;
+}
+
+#search-form button {
+    border: none;
+    background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+#engine-btn {
+    width: 3rem;
+    border-radius: 25px;
+}
+
+#search-form #search-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+#search-form #search-btn:hover {
+    background: linear-gradient(135deg, var(--button-hover-start), var(--button-hover-end));
+    transform: scale(1.05) rotate(360deg);
+    box-shadow: 0 6px 20px var(--button-hover-shadow);
+}
+
+#search-form button svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+#search-form button:hover svg {
+    transform: scale(1.1);
+}
+
+.engine-dropdown {
+    position: relative;
+}
+
+.engine-btn {
+    padding: 0.7rem 1.8rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, var(--button-gradient-start), var(--button-gradient-end));
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+    outline: none;
+    min-width: 120px;
+    font-size: 1rem;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px var(--button-shadow);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    position: relative;
+    padding-right: 2.5rem;
+}
+
+.engine-btn::after {
+    content: '';
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #fff;
+    transition: transform 0.3s ease;
+}
+
+.engine-btn:hover {
+    background: linear-gradient(135deg, var(--button-hover-start), var(--button-hover-end));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--button-hover-shadow);
+}
+
+.engine-menu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    min-width: 140px;
+    font-family: 'Quicksand', sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.engine-menu.show {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.engine-menu li {
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #333;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.engine-menu li:hover {
+    background: rgba(228, 147, 208, 0.1);
+    color: #e493d0;
+}
+
+.engine-menu li svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+/* Context Menu Styles */
+.context-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: none;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.01s ease;
+}
+
+.context-menu.active {
+    display: block;
+    opacity: 1;
+}
+
+.context-menu-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+}
+
+/* 快捷方式网格 */
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.shortcut-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: var(--card-bg, rgba(255, 255, 255, 0.1));
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    gap: 8px;
+    min-height: 100px;
+}
+
+.shortcut-item:hover {
+    transform: translateY(-2px);
+    background: var(--card-hover-bg, rgba(255, 255, 255, 0.15));
+}
+
+.shortcut-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--icon-bg, rgba(255, 255, 255, 0.1));
+    transition: all 0.3s ease;
+}
+
+.shortcut-item:hover .shortcut-icon {
+    background: var(--icon-hover-bg, rgba(255, 255, 255, 0.2));
+}
+
+.shortcut-item span {
+    font-size: 14px;
+    color: var(--text-color, #fff);
+    text-align: center;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.delete-shortcut {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    color: var(--text-color, #fff);
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    padding: 0;
+    opacity: 0.7;
+    transition: all 0.2s ease;
+}
+
+.shortcut-item:hover .delete-shortcut {
+    display: flex;
+}
+
+.delete-shortcut:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.add-shortcut {
+    border: 2px dashed var(--border-color, rgba(255, 255, 255, 0.2));
+    background: transparent;
+    color: var(--text-color, #fff);
+}
+
+.add-shortcut:hover {
+    border-color: var(--border-hover-color, rgba(255, 255, 255, 0.4));
+    background: var(--card-hover-bg, rgba(255, 255, 255, 0.05));
+}
+
+/* 拖拽样式 */
+.shortcut-item.dragging {
+    opacity: 0.5;
+    cursor: move;
+}
+
+.shortcuts-grid.drag-over {
+    background: var(--drag-over-bg, rgba(255, 255, 255, 0.05));
+    border-radius: 12px;
+}
+
+/* Blur effect for clock and search when context menu is active */
+.context-menu.active ~ #main #clock,
+.context-menu.active ~ #main .search-container {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+#main.blurred {
+    filter: blur(8px);
+    transition: filter 0.3s;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 16px; /* Space for scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0, 0, 0, 0.1);
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover-start);
+}
+
+.input-group {
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.input-group input {
+    width: 94%;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(228, 147, 208, 0.2);
+}
+
+.auto-fetch-hint {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.icon-preview {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.icon-preview:hover {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+#icon-display {
+    width: 48px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#icon-display svg {
+    width: 24px;
+    height: 24px;
+    color: #666;
+}
+
+.icon-preview span {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+}
+
+.modal-button {
+    padding: 8px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal-button.cancel {
+    background: rgba(0, 0, 0, 0.05);
+    color: #666;
+}
+
+.modal-button.cancel:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.modal-button.confirm {
+    background: var(--primary-color);
+    color: white;
+}
+
+.modal-button.confirm:hover {
+    filter: brightness(1.1);
+}
+
+/* 响应式设计规则 */
+@media screen and (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+
+    #clock {
+        font-size: 3rem;
+    }
+
+    .search-container {
+        max-width: 90%;
+        padding: 0 0.5rem;
+    }
+
+    #search-form {
+        gap: 0.5rem;
+        padding: 0.4rem;
+    }
+
+    #search-input {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    #search-form #search-btn {
+        width: 40px;
+        height: 40px;
+    }
+
+    .engine-btn {
+        padding: 0.5rem 1.2rem;
+        min-width: 100px;
+        font-size: 0.9rem;
+        height: 40px;
+    }
+
+    .shortcuts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .shortcut-item {
+        padding: 8px;
+        min-height: 80px;
+    }
+
+    .shortcut-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .shortcut-item span {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+        font-size: 13px;
+    }
+
+    #clock {
+        font-size: 2.5rem;
+    }
+
+    .search-container {
+        max-width: 98%;
+        padding: 0;
+    }
+
+    #search-form {
+        flex-direction: row;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.7rem 0.7rem;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.18);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .engine-dropdown {
+        width: auto;
+        margin-right: 0.2rem;
+    }
+
+    .engine-btn {
+        min-width: 70px;
+        width: auto;
+        font-size: 0.95rem;
+        height: 38px;
+        padding: 0.4rem 1.1rem;
+        border-radius: 16px;
+    }
+
+    #search-input {
+        flex: 1;
+        width: auto;
+        min-width: 0;
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+        border-radius: 16px;
+        margin-right: 0.2rem;
+    }
+
+    #search-form #search-btn {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .shortcuts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .shortcut-item {
+        padding: 6px;
+        min-height: 70px;
+    }
+
+    .shortcut-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .shortcut-item span {
+        font-size: 11px;
+    }
+
+    .modal-content {
+        width: 98%;
+        margin: 0 4px;
+    }
+
+    .modal-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .input-group input {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .modal-button {
+        padding: 6px 20px;
+        font-size: 0.85rem;
+    }
+}
+
+/* 针对超小屏幕设备的优化 */
+@media screen and (max-width: 320px) {
+    :root {
+        font-size: 12px;
+    }
+
+    #clock {
+        font-size: 2rem;
+    }
+
+    .shortcuts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    }
+
+    .shortcut-item {
+        min-height: 60px;
+    }
+
+    .shortcut-icon {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* 针对平板设备的优化 */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .search-container {
+        max-width: 80%;
+    }
+
+    .shortcuts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+}
+
+/* 针对大屏幕设备的优化 */
+@media screen and (min-width: 1025px) {
+    .search-container {
+        max-width: 700px;
+    }
+
+    .shortcuts-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+}
+
+/* 针对深色模式的优化 */
+@media (prefers-color-scheme: dark) {
+    .modal-content {
+        background: rgba(30, 30, 30, 0.95);
+    }
+
+    .modal-header h3 {
+        color: #fff;
+    }
+
+    .input-group input {
+        background: rgba(50, 50, 50, 0.9);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .input-group input:focus {
+        border-color: var(--primary-color);
+    }
+
+    .auto-fetch-hint {
+        color: #888;
+    }
+
+    .close-modal {
+        color: #999;
+    }
+
+    .close-modal:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .modal-button.cancel {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    .modal-button.cancel:hover {
+        background: rgba(255, 255, 255, 0.15);
+    }
+}
+
+/* 针对打印的优化 */
+@media print {
+    body {
+        background: none;
+    }
+
+    #main {
+        transform: none;
+    }
+
+    .search-container,
+    .shortcuts-grid {
+        display: none;
+    }
+}
+
+/* 移动端拖放样式 */
+@media (max-width: 768px) {
+    .shortcut-item {
+        touch-action: none;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+    }
+
+    .shortcut-item.dragging {
+        position: relative;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        transform-origin: center center;
+        transition: transform 0.1s ease;
+    }
+
+    .shortcuts-grid {
+        touch-action: none;
+    }
+
+    .shortcut-item:active {
+        transform: scale(1.05);
+    }
+}
+
+/* Settings Button */
+.settings-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: rotate(30deg);
+}
+
+.settings-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #fff;
+}
+
+/* Settings Modal Styles */
+.settings-section {
+    margin-bottom: 24px;
+}
+
+.settings-section h4 {
+    margin: 0 0 12px 0;
+    color: var(--text-color, #333);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.setting-item {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.setting-item label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: var(--text-color, #666);
+}
+
+.setting-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.setting-item input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.settings-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    background: var(--button-gradient-start);
+    color: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.settings-button:hover {
+    background: var(--button-gradient-end);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .settings-section h4 {
+        color: #fff;
+    }
+
+    .setting-item label {
+        color: #ccc;
+    }
+}
+
+/* Theme Grid Styles */
+.theme-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 12px;
+    padding: 8px 0;
+}
+
+.theme-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-option:hover {
+    transform: translateY(-2px);
+}
+
+.theme-option:hover .theme-preview::before {
+    transform: scale(1.2) translate(-25%, -25%);
+}
+
+.theme-option.active {
+    background: rgba(var(--primary-color-rgb, 0, 0, 0), 0.1);
+}
+
+.theme-option.active .theme-preview {
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb, 0, 0, 0), 0.2);
+}
+
+.theme-preview {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.theme-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: inherit;
+    border-radius: inherit;
+    transition: all 0.3s ease;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(-25%, -25%); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Theme Preview Colors with Gradients */
+.theme-preview.pink {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2), var(--gradient-3));
+    background-size: 200% 200%;
+}
+
+.theme-preview.deep-ocean {
+    background: linear-gradient(135deg, #1a237e, #0d47a1, #1976d2);
+    background-size: 200% 200%;
+}
+
+.theme-preview.forest {
+    background: linear-gradient(135deg, #12001B, #000000, #040EFF);
+    background-size: 200% 200%;
+}
+
+.theme-preview.sunset {
+    background: linear-gradient(135deg, #d32f2f, #f44336, #ff5722);
+    background-size: 200% 200%;
+}
+
+.theme-preview.neon {
+    background: linear-gradient(135deg, #00e5ff, #00ff80, #ff00ff);
+    background-size: 200% 200%;
+}
+
+.theme-preview.royal {
+    background: linear-gradient(135deg, #4a148c, #7b1fa2, #9c27b0);
+    background-size: 200% 200%;
+}
+
+.theme-preview.desert {
+    background: linear-gradient(135deg, #bf360c, #e65100, #ff7043);
+    background-size: 200% 200%;
+}
+
+.theme-preview.aurora {
+    background: linear-gradient(135deg, #006064, #00bcd4, #00e5ff);
+    background-size: 200% 200%;
+}
+
+.theme-preview.cherry {
+    background: linear-gradient(135deg, #880e4f, #c2185b, #e91e63);
+    background-size: 200% 200%;
+}
+
+.theme-preview.emerald {
+    background: linear-gradient(135deg, #004d40, #00695c, #00897b);
+    background-size: 200% 200%;
+}
+
+.theme-preview.dark-night {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d, #424242);
+    background-size: 200% 200%;
+}
+
+.theme-preview.pure-white {
+    background: linear-gradient(135deg, #ffffff, #f5f5f5, #eeeeee);
+    border: 1px solid #eee;
+    background-size: 200% 200%;
+}
+
+.theme-preview.cyberpunk {
+    background: linear-gradient(135deg, #ff00ff, #00ffff, #ffff00);
+    background-size: 200% 200%;
+}
+
+.theme-preview.pastel {
+    background: linear-gradient(135deg, #ffb3ba, #ffdeba, #ffffba);
+    background-size: 200% 200%;
+}
+
+.theme-preview.midnight {
+    background: linear-gradient(135deg, #0a192f, #112240, #182a51);
+    background-size: 200% 200%;
+}
+
+.theme-preview.lavender {
+    background: linear-gradient(135deg, #e6e6fa, #d8bfd8, #dda0dd);
+    background-size: 200% 200%;
+}
+
+.theme-preview.ocean {
+    background: linear-gradient(135deg, #0077be, #006994, #005b6a);
+    background-size: 200% 200%;
+}
+
+.theme-preview.autumn {
+    background: linear-gradient(135deg, #d35400, #e67e22, #f39c12);
+    background-size: 200% 200%;
+}
+
+.theme-preview.mint {
+    background: linear-gradient(135deg, #98ff98, #90ee90, #00ff7f);
+    background-size: 200% 200%;
+}
+
+.theme-preview.galaxy {
+    background: linear-gradient(135deg, #2c003e, #480048, #640052);
+    background-size: 200% 200%;
+}
+
+.theme-option span {
+    font-size: 0.85rem;
+    color: var(--text-color, #666);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .theme-grid {
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 8px;
+    }
+
+    .theme-preview {
+        width: 40px;
+        height: 40px;
+    }
+
+    .theme-option span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Toggle Switch Styles */
+.setting-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.setting-item label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hide the default checkbox */
+.setting-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Toggle switch container */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    margin-right: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Toggle switch handle */
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #fff;
+    top: 2px;
+    left: 2px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Toggle switch active state */
+.setting-item input[type="checkbox"]:checked + .toggle-switch {
+    background-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(var(--primary-color-rgb, 228, 147, 208), 0.4);
+}
+
+.setting-item input[type="checkbox"]:checked + .toggle-switch::after {
+    transform: translateX(20px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Toggle switch hover effect */
+.toggle-switch:hover {
+    opacity: 0.9;
+}
+
+/* Toggle switch focus state */
+.setting-item input[type="checkbox"]:focus + .toggle-switch {
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb, 228, 147, 208), 0.3);
+}
+
+/* Toggle switch disabled state */
+.setting-item input[type="checkbox"]:disabled + .toggle-switch {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Text style */
+.setting-item span {
+    margin-left: 8px;
+    color: var(--text-color);
+}

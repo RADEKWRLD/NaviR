@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main">
+        <div id="clock"><span>00:00</span></div>
+
+        <div class="search-container">
+            <form id="search-form">
+                <div class="engine-dropdown">
+                    <button type="button" id="engine-btn" class="engine-btn">Google ▼</button>
+                    <ul id="engine-menu" class="engine-menu">
+                        <li data-value="Google">
+                            <!-- Google SVG -->
+                            <svg width="20" height="20" viewBox="0 0 48 48"><g><path fill="#4285F4" d="M43.6 20.5H42V20H24v8h11.3C34.7 32.1 30.1 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c2.7 0 5.2.9 7.2 2.4l6-6C33.5 5.1 28.1 3 24 3 12.9 3 4 11.9 4 23s8.9 20 20 20c11 0 19.7-8 19.7-20 0-1.3-.1-2.7-.3-4z"/><path fill="#34A853" d="M6.3 14.7l6.6 4.8C14.5 16.1 18.9 13 24 13c2.7 0 5.2.9 7.2 2.4l6-6C33.5 5.1 28.1 3 24 3c-7.7 0-14.2 4.4-17.7 10.7z"/><path fill="#FBBC05" d="M24 43c6.1 0 11.2-2 14.9-5.4l-6.9-5.7C30.1 36 25.5 38 24 38c-5.1 0-9.5-3.1-11.1-7.5l-6.6 5.1C9.8 39.6 16.3 43 24 43z"/><path fill="#EA4335" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-4.3 6-7.3 7.5l6.9 5.7C40.2 39.6 44 32.7 44 24c0-1.3-.1-2.7-.4-3.5z"/></g></svg>
+                            Google
+                        </li>
+                        <li data-value="Bing">
+                            <!-- Bing SVG -->
+                            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#008373" d="M8 6v32l12 4l20-8V6z"/><path fill="#00B4F2" d="M8 6v32l12 4V10z"/><path fill="#FFF" d="M20 10v32l20-8V6z"/></svg>
+                            Bing
+                        </li>
+                        <li data-value="百度">
+                            <!-- 百度 SVG -->
+                            <svg width="20" height="20" viewBox="0 0 48 48"><circle cx="12" cy="24" r="6" fill="#2932e1"/><circle cx="36" cy="24" r="6" fill="#2932e1"/><circle cx="24" cy="12" r="6" fill="#e12a2a"/><circle cx="24" cy="36" r="8" fill="#e12a2a"/><circle cx="24" cy="36" r="3" fill="#fff"/></svg>
+                            百度
+                        </li>
+                        <li data-value="必应中国">
+                            <!-- 必应中国用 Bing 图标 -->
+                            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#008373" d="M8 6v32l12 4l20-8V6z"/><path fill="#00B4F2" d="M8 6v32l12 4V10z"/><path fill="#FFF" d="M20 10v32l20-8V6z"/></svg>
+                            必应中国
+                        </li>
+                        <li data-value="GitHub">
+                            <!-- GitHub SVG -->
+                            <svg width="20" height="20" viewBox="0 0 24 24"><path fill="#181717" d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.32 6.84 9.67.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.38 9.38 0 0 1 12 6.84c.85.004 1.71.12 2.51.35 1.91-1.33 2.75-1.05 2.75-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.07.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+                            GitHub
+                        </li>
+                        <li data-value="知乎">
+                            <!-- 知乎 SVG（简化版） -->
+                            <svg width="20" height="20" viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="6" fill="#0084ff"/><text x="24" y="32" text-anchor="middle" font-size="18" fill="#fff" font-family="Arial">知</text></svg>
+                            知乎
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" id="search-input" placeholder="请输入搜索内容...">
+                <button type="submit" class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+    <script src="main/script.js"></script>
+</body>
+</html>

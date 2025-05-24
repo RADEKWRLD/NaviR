@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #1e293b;
+    position: relative;
+    overflow: hidden;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    background: conic-gradient(
+        from 180deg at 50% 50%,
+        #12001B -97.5deg,
+        #000000 14.05deg,
+        #040EFF 54.01deg,
+        #8000FF 113.42deg,
+        #00B6B6 185.62deg,
+        #12001B 262.5deg,
+        #000000 374.05deg
+    );
+    filter: blur(60px) brightness(1.5);
+    z-index: -1;
+    animation: move 30s linear infinite;
+}
+
+@keyframes move {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(540deg);
+    }
+}

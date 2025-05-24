@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(
+        45deg,
+        #ff6b6b,
+        #4ecdc4,
+        #45b7d1,
+        #96c93d
+    );
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

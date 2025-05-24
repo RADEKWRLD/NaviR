@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #1e293b;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    bottom: -50%;
+    left: -50%;
+    z-index: -1;
+    animation: move 30s linear infinite;
+}
+
+body::before {
+    background: conic-gradient(
+        from 180deg at 50% 50%,
+        #12001B -97.5deg,
+        #000000 14.05deg,
+        #040EFF 54.01deg,
+        #8000FF 113.42deg,
+        #00B6B6 185.62deg,
+        #12001B 262.5deg,
+        #000000 374.05deg
+    );
+    filter: blur(60px) brightness(1.5);
+    animation-duration: 30s;
+}
+
+body::after {
+    background: conic-gradient(
+        from 0deg at 50% 50%,
+        #FF3366 -97.5deg,
+        #FF6B6B 14.05deg,
+        #4ECDC4 54.01deg,
+        #45B7D1 113.42deg,
+        #96C93D 185.62deg,
+        #FF3366 262.5deg,
+        #FF6B6B 374.05deg
+    );
+    filter: blur(80px) brightness(1.2);
+    animation-duration: 25s;
+    animation-direction: reverse;
+}
+
+@keyframes move {
+    0% {
+        transform: rotate(0deg) scale(1.2);
+    }
+    50% {
+        transform: rotate(180deg) scale(1.4);
+    }
+    100% {
+        transform: rotate(360deg) scale(1.2);
+    }
+}
+
+/* 添加鼠标跟随效果 */
+body:hover::before {
+    filter: blur(60px) brightness(1.8);
+    transition: filter 0.3s ease;
+}
+
+body:hover::after {
+    filter: blur(80px) brightness(1.5);
+    transition: filter 0.3s ease;
+}

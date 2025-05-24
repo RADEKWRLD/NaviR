@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<div id="settings-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>设置</h3>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- 时间设置 -->
+            <section class="settings-section">
+                <h4>时间显示</h4>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="time-24h" checked>
+                        24小时制
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="show-seconds">
+                        显示秒数
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" id="blink-separator" checked>
+                        分隔符闪烁
+                    </label>
+                </div>
+            </section>
+
+            <!-- 主题设置 -->
+            <section class="settings-section">
+                <h4>主题</h4>
+                <div class="theme-grid">
+                    <div class="theme-option" data-theme="pink">粉色</div>
+                    <div class="theme-option" data-theme="deep-ocean">深海</div>
+                    <div class="theme-option" data-theme="forest">森林</div>
+                    <div class="theme-option" data-theme="sunset">日落</div>
+                    <div class="theme-option" data-theme="neon">霓虹</div>
+                    <div class="theme-option" data-theme="royal">皇家</div>
+                    <div class="theme-option" data-theme="desert">沙漠</div>
+                    <div class="theme-option" data-theme="aurora">极光</div>
+                    <div class="theme-option" data-theme="cherry">樱桃</div>
+                    <div class="theme-option" data-theme="emerald">翡翠</div>
+                </div>
+            </section>
+
+            <!-- 导航设置 -->
+            <section class="settings-section">
+                <h4>导航</h4>
+                <div class="setting-item">
+                    <button id="reset-shortcuts" class="settings-button">重置快捷方式</button>
+                </div>
+            </section>
+
+            <!-- 语言设置 -->
+            <section class="settings-section">
+                <h4>语言</h4>
+                <div class="setting-item">
+                    <label>
+                        <input type="radio" name="language" value="zh-CN" checked>
+                        简体中文
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        <input type="radio" name="language" value="en-US">
+                        English
+                    </label>
+                </div>
+            </section>
+        </div>
+    </div>
+</div> 
