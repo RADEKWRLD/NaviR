@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import gsap from '../node_modules/gsap/dist/gsap.min.js';
 import { SettingsManager } from './settings.js';
 import { ThemeManager } from './theme.js';
 import { LanguageManager } from './language.js';

@@ -1,7 +1,11 @@
 {
+  "name": "navir",
+  "version": "1.0.0",
+  "description": "A modern navigation page",
+  "main": "index.html",
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.4.0",
-    "gsap": "^3.13.0",
+    "gsap": "^3.12.5",
     "vite": "^6.3.5"
   },
   "devDependencies": {
