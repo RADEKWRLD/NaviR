@@ -9,6 +9,16 @@ export default defineConfig({
       cert: fs.readFileSync(path.resolve(__dirname, 'ssl/Cert/cert.pem')),
     },
     host: '0.0.0.0'
+  },
+  base: './',
+  build: {
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      input: {
+        main: 'index.html'
+      }
+    }
   }
 });
 
