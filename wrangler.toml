@@ -1,3 +1,4 @@
+compatibility_date = "2025-05-24"
 main = "workers-site/index.js"
 
 [site]
