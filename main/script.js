@@ -13,37 +13,6 @@ function updateTime() {
     settingsManager.updateTimeDisplay();
 }
 
-// 搜索引擎配置
-const searchEngines = {
-    google: {
-        name: 'Google',
-        url: 'https://www.google.com/search?q='
-    },
-    bing: {
-        name: 'Bing',
-        url: 'https://www.bing.com/search?q='
-    },
-    baidu: {
-        name: '百度',
-        url: 'https://www.baidu.com/s?wd='
-    },
-    bingcn: {
-        name: '必应中国',
-        url: 'https://cn.bing.com/search?q='
-    },
-    github: {
-        name: 'GitHub',
-        url: 'https://github.com/search?q='
-    },
-    zhihu: {
-        name: '知乎',
-        url: 'https://www.zhihu.com/search?q='
-    },
-    bilibili: {
-        name: '哔哩哔哩',
-        url: 'https://search.bilibili.com/all?keyword='
-    }
-};
 
 // 搜索引擎的搜索URL模板
 const engineSearchUrls = {
@@ -53,7 +22,7 @@ const engineSearchUrls = {
     "BingCN": "https://cn.bing.com/search?q=",
     "GitHub": "https://github.com/search?q=",
     "知乎": "https://www.zhihu.com/search?type=content&q=",
-    "哔哩哔哩": "https://search.bilibili.com/all?keyword="
+    "bilibili": "https://search.bilibili.com/all?keyword="
 };
 
 // 当前选中的引擎，默认Google
