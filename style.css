@@ -594,6 +594,7 @@ body {
     font-family: 'Kaushan Script', cursive;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1),
                  4px 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 #clock .separator {
@@ -1285,7 +1286,7 @@ body {
     }
 
     #clock {
-        font-size: 3rem;
+        font-size: 5rem;
     }
 
     .search-container {
@@ -1348,7 +1349,7 @@ body {
     }
 
     #clock {
-        font-size: 2.5rem;
+        font-size: 5rem;
     }
 
     .search-container {
