@@ -579,14 +579,13 @@ body {
 #main {
     position: relative;
     z-index: 1;
-    transition: all 0.3s ease;
     transform: translateY(-5rem);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    overflow: hidden;
+    overflow: visible;
 }
 
 #clock {
@@ -616,9 +615,13 @@ body {
     width: 100%;
     max-width: 600px;
     padding: 0 1rem;
+    position: relative;
+    z-index: 9999;
 }
 
 #search-form {
+    position: relative;
+    z-index: 9998;
     display: flex;
     gap: 0.8rem;
     background: rgba(255, 255, 255, 0.15);
@@ -703,6 +706,7 @@ body {
 
 .engine-dropdown {
     position: relative;
+    z-index: 9999;
 }
 
 .engine-btn {
@@ -749,27 +753,32 @@ body {
     box-shadow: 0 4px 12px var(--button-hover-shadow);
 }
 
-.engine-menu {
-    display: none;
+.engine-menu-container {
     position: absolute;
-    top: 110%;
+    top: calc(100% + 8px);
     left: 0;
-    z-index: 10;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    list-style: none;
-    margin: 0;
-    padding: 0.5rem;
-    min-width: 140px;
-    font-family: 'Quicksand', sans-serif;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    display: none;
+    transition: all 0.2s ease-in-out;
+    /* 隐藏滚动条但保持滚动功能 */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
-.engine-menu.show {
+/* 隐藏 Webkit 浏览器的滚动条 */
+.engine-menu-container::-webkit-scrollbar {
+    display: none;
+}
+
+.engine-menu-container.show {
     display: block;
-    animation: fadeIn 0.2s ease;
+    animation: fadeIn 0.2s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -777,25 +786,58 @@ body {
         opacity: 0;
         transform: translateY(-10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
+.engine-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    z-index: 10000;
+}
+
 .engine-menu li {
-    padding: 0.8rem 1.2rem;
+    padding: 10px 16px;
     cursor: pointer;
     transition: all 0.2s ease;
     color: #333;
     border: none;
     background: none;
     font-size: 0.95rem;
-    border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+}
+
+.engine-menu li:hover {
+    background: rgba(var(--primary-color-rgb, 228, 147, 208), 0.1);
+    color: var(--primary-color);
+}
+
+.engine-menu li svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.8;
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+    .engine-menu-container {
+        background: rgba(30, 30, 30, 0.95);
+    }
+    
+    .engine-menu li {
+        color: #fff;
+    }
+    
+    .engine-menu li:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
 }
 
 .engine-menu li:hover {
@@ -1594,11 +1636,6 @@ body {
 
 .theme-preview.desert {
     background: linear-gradient(135deg, #bf360c, #e65100, #ff7043);
-    background-size: 200% 200%;
-}
-
-.theme-preview.aurora {
-    background: linear-gradient(135deg, #006064, #00bcd4, #00e5ff);
     background-size: 200% 200%;
 }
 

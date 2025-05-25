@@ -38,6 +38,10 @@ const searchEngines = {
     zhihu: {
         name: '知乎',
         url: 'https://www.zhihu.com/search?q='
+    },
+    bilibili: {
+        name: '哔哩哔哩',
+        url: 'https://search.bilibili.com/all?keyword='
     }
 };
 
@@ -48,7 +52,8 @@ const engineSearchUrls = {
     "百度": "https://www.baidu.com/s?wd=",
     "BingCN": "https://cn.bing.com/search?q=",
     "GitHub": "https://github.com/search?q=",
-    "知乎": "https://www.zhihu.com/search?type=content&q="
+    "知乎": "https://www.zhihu.com/search?type=content&q=",
+    "哔哩哔哩": "https://search.bilibili.com/all?keyword="
 };
 
 // 当前选中的引擎，默认Google
@@ -89,26 +94,29 @@ setRandomTheme();
 // 搜索引擎下拉菜单逻辑
 const engineBtn = document.getElementById('engine-btn');
 const engineMenu = document.getElementById('engine-menu');
+const engineMenuContainer = document.querySelector('.engine-menu-container');
 
 engineBtn.addEventListener('click', function(e) {
     e.preventDefault();
-    engineMenu.classList.toggle('show');
+    e.stopPropagation();
+    engineMenuContainer.classList.toggle('show');
 });
 
 // 监听菜单点击，切换引擎
 document.querySelectorAll('#engine-menu li').forEach(li => {
-    li.addEventListener('click', function() {
+    li.addEventListener('click', function(e) {
+        e.stopPropagation();
         const name = this.getAttribute('data-value');
         currentEngine = name;
         engineBtn.textContent = name;
-        engineMenu.classList.remove('show');
+        engineMenuContainer.classList.remove('show');
     });
 });
 
 // 点击外部关闭菜单
 document.addEventListener('click', function(e) {
-    if (!engineBtn.contains(e.target) && !engineMenu.contains(e.target)) {
-        engineMenu.classList.remove('show');
+    if (!engineBtn.contains(e.target) && !engineMenuContainer.contains(e.target)) {
+        engineMenuContainer.classList.remove('show');
     }
 });
 
@@ -148,39 +156,45 @@ function showContextMenu() {
     isMenuVisible = true;
     // 显示菜单
     gsap.set(contextMenu, { display: 'block' });
-    gsap.to(contextMenu, { opacity: 1, duration: 0.05, ease: 'power1.out' });
     
-    // 使用 transform-origin 和 scale 的组合
+    // 同时执行菜单和主内容的动画
+    gsap.timeline()
+        .to(contextMenu, { 
+            opacity: 1, 
+            duration: 0.1, 
+            ease: 'power1.in' 
+        })
+        .to(main, { 
+            scale: 1.17,
+            duration: 0.1, 
+            ease: 'power1.in'
+        }, '<');  // 与上一个动画同时开始
+    
+    // 设置溢出隐藏
     main.style.overflow = 'hidden';
-    gsap.to(main, { 
-        scale: 1.17,
-        duration: 0.05, 
-        ease: 'power1.in'
-    });
 }
 
 function hideContextMenu() {
     isMenuVisible = false;
-    // 动画隐藏菜单
-    gsap.to(contextMenu, {
-        opacity: 0,
-        duration: 0.05,
-        ease: 'power2.out',
-        onComplete: () => {
-            gsap.set(contextMenu, { display: 'none' });
-        }
-    });
     
-    gsap.to(main, { 
-        filter: 'blur(0px)', 
-        scale: 1,
-        duration: 0.05, 
-        ease: 'power1.in',
-        onComplete: () => {
-            main.style.overflow = '';
-            main.style.transformOrigin = '';
-        }
-    });
+    // 同时执行菜单和主内容的动画
+    gsap.timeline()
+        .to(contextMenu, {
+            opacity: 0,
+            duration: 0.1,
+            ease: 'power1.out',
+            onComplete: () => {
+                gsap.set(contextMenu, { display: 'none' });
+            }
+        })
+        .to(main, { 
+            scale: 1,
+            duration: 0.1, 
+            ease: 'power1.out',
+            onComplete: () => {
+                main.style.overflow = '';
+            }
+        }, '<');  // 与上一个动画同时开始
 }
 
 // 点击事件处理
@@ -205,9 +219,9 @@ document.addEventListener('click', function(e) {
 });
 
 // 按 ESC 关闭菜单
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && isMenuVisible) {
-        hideContextMenu();
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        engineMenuContainer.classList.remove('show');
     }
 });
 
