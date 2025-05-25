@@ -1280,7 +1280,7 @@ body {
 }
 
 /* 移动端响应式布局 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 920px) {
     :root {
         font-size: 14px;
     }
