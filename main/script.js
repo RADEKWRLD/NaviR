@@ -62,7 +62,6 @@ setRandomTheme();
 
 // 搜索引擎下拉菜单逻辑
 const engineBtn = document.getElementById('engine-btn');
-const engineMenu = document.getElementById('engine-menu');
 const engineMenuContainer = document.querySelector('.engine-menu-container');
 
 engineBtn.addEventListener('click', function(e) {

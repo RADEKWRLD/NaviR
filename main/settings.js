@@ -1,4 +1,4 @@
-import { translations } from './i18n.js';
+import { translations } from './language.js';
 
 // Settings management
 export class SettingsManager {

@@ -1,5 +1,5 @@
 // 语言配置
-const translations = {
+export const translations = {
     'zh-CN': {
         'settings.title': '设置',
         'settings.theme': '主题',

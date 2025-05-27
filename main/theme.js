@@ -1,4 +1,4 @@
-// Theme management
+// 主题管理器
 export class ThemeManager {
     constructor() {
         this.settingsBtn = document.getElementById('settings-btn');
@@ -38,7 +38,7 @@ export class ThemeManager {
 
         this.renderThemeGrid();
 
-        // Add event listeners
+        // 添加事件监听器
         this.settingsBtn.addEventListener('click', () => this.openSettings());
         this.closeModalBtns.forEach(btn => {
             btn.addEventListener('click', () => this.closeSettings());
@@ -49,7 +49,7 @@ export class ThemeManager {
             }
         });
 
-        // Close settings with Escape key
+        // 关闭设置时使用Escape键
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.settingsModal.classList.contains('show')) {
                 this.closeSettings();
