@@ -385,138 +385,177 @@ function renderShortcuts() {
     });
 }
 
+// 触摸事件相关变量
+let touchStartX = 0;
+let touchStartY = 0;
+let draggedItem = null;
+let draggedItemClone = null;
+let initialX = 0;
+let initialY = 0;
+let isDragging = false;
+
+// 触摸开始事件处理
+function handleTouchStart(e) {
+    const touch = e.touches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    draggedItem = this;
+    initialX = this.offsetLeft;
+    initialY = this.offsetTop;
+    
+    // 创建拖动元素的克隆
+    draggedItemClone = this.cloneNode(true);
+    draggedItemClone.style.position = 'absolute';
+    draggedItemClone.style.opacity = '0.8';
+    draggedItemClone.style.pointerEvents = 'none';
+    document.body.appendChild(draggedItemClone);
+}
+
+// 触摸移动事件处理
+function handleTouchMove(e) {
+    if (!draggedItem) return;
+    e.preventDefault();
+    
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartX;
+    const deltaY = touch.clientY - touchStartY;
+    
+    if (!isDragging && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)) {
+        isDragging = true;
+        draggedItem.style.opacity = '0.5';
+    }
+    
+    if (isDragging) {
+        draggedItemClone.style.left = initialX + deltaX + 'px';
+        draggedItemClone.style.top = initialY + deltaY + 'px';
+        
+        // 查找最近的目标位置
+        const target = findDropTarget(touch.clientX, touch.clientY);
+        if (target && target !== draggedItem) {
+            const container = draggedItem.parentNode;
+            const items = Array.from(container.children);
+            const fromIndex = items.indexOf(draggedItem);
+            const toIndex = items.indexOf(target);
+            
+            if (fromIndex !== -1 && toIndex !== -1) {
+                if (fromIndex < toIndex) {
+                    target.parentNode.insertBefore(draggedItem, target.nextSibling);
+                } else {
+                    target.parentNode.insertBefore(draggedItem, target);
+                }
+                // 更新快捷方式顺序
+                updateShortcutsOrder();
+            }
+        }
+    }
+}
+
+// 触摸结束事件处理
+function handleTouchEnd() {
+    if (draggedItem) {
+        draggedItem.style.opacity = '1';
+        if (draggedItemClone) {
+            draggedItemClone.remove();
+        }
+    }
+    
+    draggedItem = null;
+    draggedItemClone = null;
+    isDragging = false;
+}
+
+// 拖动开始事件处理
+function handleDragStart(e) {
+    this.style.opacity = '0.5';
+    draggedItem = this;
+    e.dataTransfer.effectAllowed = 'move';
+}
+
+// 拖动结束事件处理
+function handleDragEnd(e) {
+    this.style.opacity = '1';
+    draggedItem = null;
+}
+
+// 拖动经过事件处理
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+}
+
+// 放置事件处理
+function handleDrop(e) {
+    e.preventDefault();
+    if (draggedItem && this !== draggedItem) {
+        const container = draggedItem.parentNode;
+        const items = Array.from(container.children);
+        const fromIndex = items.indexOf(draggedItem);
+        const toIndex = items.indexOf(this);
+        
+        if (fromIndex < toIndex) {
+            this.parentNode.insertBefore(draggedItem, this.nextSibling);
+        } else {
+            this.parentNode.insertBefore(draggedItem, this);
+        }
+        
+        // 更新快捷方式顺序
+        updateShortcutsOrder();
+    }
+}
+
+// 查找放置目标
+function findDropTarget(x, y) {
+    const elements = document.elementsFromPoint(x, y);
+    return elements.find(el => el.classList.contains('shortcut-item') && el !== draggedItem);
+}
+
+// 更新快捷方式顺序
+function updateShortcutsOrder() {
+    const container = document.getElementById('shortcuts-grid');
+    const shortcuts = [];
+    
+    Array.from(container.children).forEach(child => {
+        if (child.classList.contains('shortcut-item')) {
+            const url = child.dataset.url;
+            const existingShortcut = loadShortcuts().find(s => s.url === url);
+            if (existingShortcut) {
+                shortcuts.push(existingShortcut);
+            }
+        }
+    });
+    
+    saveShortcuts(shortcuts);
+}
+
 // 处理拖拽
 function handleDragAndDrop() {
-    const container = document.getElementById('shortcuts-grid');
-    let draggedItem = null;
-    let touchStartY = 0;
-    let touchStartX = 0;
-    let initialY = 0;
-    let initialX = 0;
+    const shortcutsGrid = document.getElementById('shortcuts-grid');
+    const shortcutItems = document.querySelectorAll('.shortcut-item');
 
-    // 处理触摸开始事件
-    function handleTouchStart(e) {
-        if (e.target.classList.contains('shortcut-item') && !e.target.classList.contains('add-shortcut')) {
-            draggedItem = e.target;
-            draggedItem.style.opacity = '0.5';
-            draggedItem.style.position = 'relative';
-            draggedItem.style.zIndex = '1000';
-            
-            const touch = e.touches[0];
-            touchStartY = touch.clientY;
-            touchStartX = touch.clientX;
-            
-            const rect = draggedItem.getBoundingClientRect();
-            initialY = rect.top;
-            initialX = rect.left;
-            
-            // 添加触摸移动和结束事件监听器
-            document.addEventListener('touchmove', handleTouchMove);
-            document.addEventListener('touchend', handleTouchEnd);
-        }
-    }
-
-    // 处理触摸移动事件
-    function handleTouchMove(e) {
-        if (!draggedItem) return;
-        e.preventDefault();
-        
-        const touch = e.touches[0];
-        const deltaY = touch.clientY - touchStartY;
-        const deltaX = touch.clientX - touchStartX;
-        
-        // 更新元素位置
-        draggedItem.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-        
-        // 获取当前触摸点下的元素
-        const elementAtTouch = document.elementFromPoint(touch.clientX, touch.clientY);
-        const targetItem = elementAtTouch?.closest('.shortcut-item');
-        
-        if (targetItem && !targetItem.classList.contains('add-shortcut') && targetItem !== draggedItem) {
-            const boundingRect = targetItem.getBoundingClientRect();
-            const touchX = touch.clientX;
-            const itemCenterX = boundingRect.left + boundingRect.width / 2;
-            
-            if (touchX < itemCenterX) {
-                container.insertBefore(draggedItem, targetItem);
-            } else {
-                container.insertBefore(draggedItem, targetItem.nextSibling);
-            }
-        }
-    }
-
-    // 处理触摸结束事件
-    function handleTouchEnd() {
-        if (!draggedItem) return;
-        
-        // 重置元素样式
-        draggedItem.style.opacity = '1';
-        draggedItem.style.transform = '';
-        draggedItem.style.position = '';
-        draggedItem.style.zIndex = '';
-        
-        // 保存新的顺序
-        const shortcuts = Array.from(container.children)
-            .filter(item => item.classList.contains('shortcut-item') && !item.classList.contains('add-shortcut'))
-            .map(item => {
-                const name = item.querySelector('span').textContent;
-                const url = item.dataset.url;
-                const icon = item.querySelector('.shortcut-icon').innerHTML;
-                return { name, url, icon };
-            });
-        saveShortcuts(shortcuts);
-        
-        // 移除事件监听器
-        document.removeEventListener('touchmove', handleTouchMove);
-        document.removeEventListener('touchend', handleTouchEnd);
-        
-        draggedItem = null;
-    }
-
-    // 桌面端拖放事件
-    container.addEventListener('dragstart', (e) => {
-        if (e.target.classList.contains('shortcut-item') && !e.target.classList.contains('add-shortcut')) {
-            draggedItem = e.target;
-            e.target.style.opacity = '0.5';
-        }
+    shortcutItems.forEach(item => {
+        item.addEventListener('touchstart', handleTouchStart, { passive: true });
+        item.addEventListener('touchmove', handleTouchMove, { passive: false });
+        item.addEventListener('touchend', handleTouchEnd);
+        item.addEventListener('dragstart', handleDragStart);
+        item.addEventListener('dragend', handleDragEnd);
+        item.addEventListener('dragover', handleDragOver);
+        item.addEventListener('drop', handleDrop);
     });
-
-    container.addEventListener('dragend', (e) => {
-        if (e.target.classList.contains('shortcut-item')) {
-            e.target.style.opacity = '1';
-        }
-    });
-
-    container.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        const targetItem = e.target.closest('.shortcut-item');
-        if (targetItem && !targetItem.classList.contains('add-shortcut') && targetItem !== draggedItem) {
-            const boundingRect = targetItem.getBoundingClientRect();
-            const mouseX = e.clientX;
-            const itemCenterX = boundingRect.left + boundingRect.width / 2;
-            
-            if (mouseX < itemCenterX) {
-                container.insertBefore(draggedItem, targetItem);
-            } else {
-                container.insertBefore(draggedItem, targetItem.nextSibling);
-            }
-            
-            // 保存新的顺序
-            const shortcuts = Array.from(container.children)
-                .filter(item => item.classList.contains('shortcut-item') && !item.classList.contains('add-shortcut'))
-                .map(item => {
-                    const name = item.querySelector('span').textContent;
-                    const url = item.dataset.url;
-                    const icon = item.querySelector('.shortcut-icon').innerHTML;
-                    return { name, url, icon };
-                });
-            saveShortcuts(shortcuts);
-        }
-    });
-
-    // 移动端触摸事件
-    container.addEventListener('touchstart', handleTouchStart);
 }
+
+// 添加阻止登录按钮显示快捷方式栏的代码
+document.addEventListener('DOMContentLoaded', function() {
+    const loginBtn = document.getElementById('login-btn');
+    const contextMenu = document.getElementById('context-menu');
+    
+    loginBtn.addEventListener('click', function(e) {
+        // 阻止事件冒泡，防止触发快捷方式栏
+        e.stopPropagation();
+        // 确保快捷方式栏隐藏
+        contextMenu.classList.remove('active');
+        document.getElementById('main').classList.remove('blurred');
+    });
+});
 
 // 添加新快捷方式
 function handleAddShortcut() {

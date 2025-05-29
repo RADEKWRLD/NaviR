@@ -1474,6 +1474,178 @@ body {
     color: #fff;
 }
 
+/* Login Button */
+.login-btn {
+    position: fixed;
+    top: 20px;
+    right: 70px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.login-btn svg {
+    width: 23px;
+    height: 23px;
+    color: #fff;
+}
+
+
+/* 用户信息下拉菜单 */
+.user-dropdown {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    padding: 10px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.login-btn:hover .user-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.user-dropdown .user-name {
+    padding: 8px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.user-dropdown-item {
+    display: block;
+    padding: 8px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.user-dropdown-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--primary-color);
+}
+
+/* 暗色模式适配 */
+@media (prefers-color-scheme: dark) {
+    .user-dropdown {
+        background: rgba(30, 30, 30, 0.95);
+    }
+    
+    .user-dropdown .user-name {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--primary-color);
+    }
+    
+    .user-dropdown-item {
+        color: #eee;
+    }
+    
+    .user-dropdown-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* 登录模态框样式 */
+.login-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.login-tab {
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    color: var(--primary-color);
+}
+
+.login-tab.active {
+    opacity: 1;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.login-tab:hover {
+    opacity: 1;
+}
+
+.login-tab-content {
+    display: none;
+}
+
+.login-tab-content input {
+    display: block;
+    width: 95%;
+}
+
+.login-tab-content.active {
+    display: block;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to right, var(--button-gradient-start), var(--button-gradient-end));
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--button-shadow);
+}
+
+.login-button:hover {
+    background: linear-gradient(to right, var(--button-hover-start), var(--button-hover-end));
+    box-shadow: 0 6px 20px var(--button-hover-shadow);
+}
+
+.login-message {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+    min-height: 20px;
+}
+
+.login-message.error {
+    color: #f44336;
+}
+
+.login-message.success {
+    color: #4CAF50;
+}
+
 /* Settings Modal Styles */
 .settings-section {
     margin-bottom: 24px;
