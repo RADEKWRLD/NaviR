@@ -99,7 +99,9 @@ export const translations = {
         'forgot.message.success': '重置密码邮件已发送',
         'forgot.message.error': '重置密码失败',
         'forgot.password.placeholder': '新密码',
-        'forgot.confirm.placeholder': '确认新密码'
+        'forgot.confirm.placeholder': '确认新密码',
+        'register.username.placeholder': '用户名',
+        'login.status.not_logged_in': '未登录'
     },
     'en-US': {
         'settings.title': 'Settings',
@@ -200,7 +202,9 @@ export const translations = {
         'forgot.message.success': 'Password reset email sent',
         'forgot.message.error': 'Password reset failed',
         'forgot.password.placeholder': 'New Password',
-        'forgot.confirm.placeholder': 'Confirm New Password'
+        'forgot.confirm.placeholder': 'Confirm New Password',
+        'register.username.placeholder': 'Username',
+        'login.status.not_logged_in': 'Not logged in'
     }
 };
 
@@ -222,6 +226,21 @@ export class LanguageManager {
                     window.themeManager.renderThemeGrid();
                 }
             });
+
+            // 更新本地用户设置中的语言
+            if (window.userAPI && window.userAPI.isLoggedIn()) {
+                const currentUser = window.userAPI.getCurrentUser();
+                if (currentUser && currentUser.settings) {
+                    // 只更新本地存储
+                    currentUser.settings.language = lang;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // 更新UI显示
+                    if (window.userAPI.updateLoginState) {
+                        window.userAPI.updateLoginState(true, currentUser);
+                    }
+                }
+            }
         }
     }
 
@@ -236,6 +255,11 @@ export class LanguageManager {
         elements.forEach(element => {
             const key = element.getAttribute('data-i18n');
             if (!key) return;
+
+            //如果用户名是已经登录了，就不更新翻译
+            if(key === 'login.status.not_logged_in' && window.userAPI.isLoggedIn()){
+                return;
+            }
             
             const translation = this.getTranslation(key);
             

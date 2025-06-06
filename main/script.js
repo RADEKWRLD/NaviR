@@ -52,14 +52,6 @@ const themes = [
     'galaxy'
 ];
 
-function setRandomTheme() {
-    const randomTheme = themes[Math.floor(Math.random() * themes.length)];
-    document.documentElement.setAttribute('data-theme', randomTheme);
-}
-
-// Set random theme when page loads
-setRandomTheme();
-
 // 搜索引擎下拉菜单逻辑
 const engineBtn = document.getElementById('engine-btn');
 const engineMenuContainer = document.querySelector('.engine-menu-container');
@@ -249,10 +241,38 @@ function loadShortcuts() {
     return savedShortcuts ? JSON.parse(savedShortcuts) : defaultShortcuts;
 }
 
-// 保存快捷方式到本地存储
-function saveShortcuts(shortcuts) {
+// 保存快捷方式
+async function saveShortcuts(shortcuts) {
     localStorage.setItem(SHORTCUTS_STORAGE_KEY, JSON.stringify(shortcuts));
+    
+    // Sync with backend if user is logged in
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const authToken = localStorage.getItem('authToken');
+    if (currentUser && authToken) {
+        try {
+            const response = await fetch('http://localhost:5000/settings', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': authToken
+                },
+                body: JSON.stringify({
+                    shortcuts: shortcuts
+                })
+            });
+            
+            if (!response.ok) {
+                console.error('Failed to sync shortcuts with backend');
+            }
+        } catch (error) {
+            console.error('Error syncing shortcuts with backend:', error);
+        }
+    }
 }
+
+// 将快捷方式相关函数添加到全局范围
+window.loadShortcuts = loadShortcuts;
+window.saveShortcuts = saveShortcuts;
 
 // 新标签页开关初始化
 const shortcutNewTabCheckbox = document.getElementById('shortcut-newtab');
@@ -383,7 +403,13 @@ function renderShortcuts() {
     shortcuts.forEach(shortcut => {
         container.insertBefore(createShortcutElement(shortcut), addButton);
     });
+
+    // 重新添加拖拽事件监听器
+    handleDragAndDrop();
 }
+
+// 将 renderShortcuts 函数添加到全局范围
+window.renderShortcuts = renderShortcuts;
 
 // 触摸事件相关变量
 let touchStartX = 0;
@@ -405,9 +431,6 @@ function handleTouchStart(e) {
     
     // 创建拖动元素的克隆
     draggedItemClone = this.cloneNode(true);
-    draggedItemClone.style.position = 'absolute';
-    draggedItemClone.style.opacity = '0.8';
-    draggedItemClone.style.pointerEvents = 'none';
     document.body.appendChild(draggedItemClone);
 }
 
@@ -529,7 +552,6 @@ function updateShortcutsOrder() {
 
 // 处理拖拽
 function handleDragAndDrop() {
-    const shortcutsGrid = document.getElementById('shortcuts-grid');
     const shortcutItems = document.querySelectorAll('.shortcut-item');
 
     shortcutItems.forEach(item => {
@@ -830,17 +852,11 @@ function initLanguageToggle() {
     
     languageBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // 如果点击的是已经激活的按钮，直接返回
             if (btn.classList.contains('active')) {
                 return;
             }
-            
-            // 移除所有按钮的 active 类
             languageBtns.forEach(b => b.classList.remove('active'));
-            // 给当前点击的按钮添加 active 类
             btn.classList.add('active');
-            
-            // 获取选中的语言并切换
             const selectedLang = btn.getAttribute('data-lang');
             languageManager.setLanguage(selectedLang);
             if (window.themeManager) themeManager.renderThemeGrid();
@@ -901,6 +917,8 @@ function initOpacityControl() {
 function init() {
     settingsManager = new SettingsManager();
     themeManager = new ThemeManager();
+    // 确保 themeManager 在全局范围内可用
+    window.themeManager = themeManager;
     languageManager = new LanguageManager();
     // 设置主题管理器的语言管理器
     themeManager.setLanguageManager(languageManager);
