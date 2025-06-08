@@ -2,7 +2,7 @@
 import gsap from 'gsap';
 
 // API URL常量
-const API_URL = 'http://localhost:5000';
+const API_URL = '/api';
 
 function initLoginFeatures() {
     const loginBtn = document.getElementById('login-btn');
@@ -449,12 +449,10 @@ function initLoginFeatures() {
     
     // 应用用户设置
     function applyUserSettings(settings) {
-        console.log('应用用户设置：', settings);
         
         // 处理自定义主题数据（如果存在）
         if (settings.custom_themes && Array.isArray(settings.custom_themes)) {
-            console.log('处理自定义主题数据：', settings.custom_themes);
-            
+      
             // 将后端格式的自定义主题转换为前端格式
             const customThemes = settings.custom_themes.map((colors, index) => ({
                 name: `custom_${Date.now()}_${index}`,
@@ -463,17 +461,14 @@ function initLoginFeatures() {
             
             // 保存到本地存储
             localStorage.setItem('custom_themes', JSON.stringify(customThemes));
-            console.log('保存自定义主题到本地存储：', customThemes);
-            
+       
             // 如果有themeManager，更新其customThemes属性并重新渲染
             if (window.themeManager) {
-                console.log('更新ThemeManager的customThemes属性');
                 window.themeManager.customThemes = customThemes;
                 // 如果当前主题是自定义主题，需要重新应用
                 if (settings.theme && settings.theme.startsWith('custom-')) {
                     const idx = parseInt(settings.theme.split('-')[1]);
                     if (customThemes[idx]) {
-                        console.log('重新应用自定义主题：', customThemes[idx]);
                         window.themeManager.applyCustomTheme(customThemes[idx]);
                     }
                 }
@@ -482,8 +477,7 @@ function initLoginFeatures() {
         }
         
         // 设置主题（只在明确指定主题时才应用）
-        if (settings.theme) {
-            console.log('应用主题：', settings.theme);
+        if (settings.theme) {       
             if (window.themeManager) {
                 window.themeManager.currentTheme = settings.theme;
                 window.themeManager.renderThemeGrid();

@@ -1,5 +1,5 @@
 // 主题管理器
-const API_URL = 'http://localhost:5000';  // 添加 API_URL 定义
+const API_URL = '/api';  // 添加 API_URL 定义
 
 export class ThemeManager {
     constructor() {
@@ -36,7 +36,6 @@ export class ThemeManager {
             currentUser.settings.custom_themes = validThemes;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             
-            console.log('从用户设置加载自定义主题：', this.customThemes);
         } else {
             // 从本地存储中加载自定义主题
             try {
@@ -53,8 +52,6 @@ export class ThemeManager {
                         }
                         return theme;
                     });
-                
-                console.log('从本地存储加载自定义主题：', this.customThemes);
             } catch (error) {
                 console.error('加载自定义主题失败：', error);
                 this.customThemes = [];
@@ -82,32 +79,24 @@ export class ThemeManager {
     }
 
     init() {
-        console.log('初始化主题管理器，当前主题：', this.currentTheme, '自定义主题数量：', this.customThemes.length);
-        console.log('自定义主题列表：', this.customThemes);
-        
         // 先应用主题
         if (this.currentTheme.startsWith('custom-')) {
             const idx = parseInt(this.currentTheme.split('-')[1]);
-            console.log('当前是自定义主题，索引：', idx);
             const themeObj = this.customThemes[idx];
             if (themeObj && themeObj.colors) {
-                console.log('应用自定义主题：', themeObj);
                 this.applyCustomTheme(themeObj);
             } else {
                 // 如果找不到自定义主题或主题无效，回退到默认主题
-                console.log('找不到自定义主题或主题无效，回退到默认主题');
                 this.currentTheme = this.defaultTheme;
                 localStorage.setItem('theme', this.defaultTheme);
                 this.applyTheme(this.defaultTheme);
             }
         } else {
-            console.log('应用默认主题：', this.currentTheme);
             this.applyTheme(this.currentTheme);
         }
 
         // 渲染主题网格
         this.renderThemeGrid();
-        console.log('主题网格渲染完成');
 
         // 添加事件监听器
         this.settingsBtn.addEventListener('click', () => this.openSettings());
@@ -132,12 +121,8 @@ export class ThemeManager {
     }
 
     renderThemeGrid() {
-        console.log('渲染主题网格，当前主题：', this.currentTheme);
-        console.log('自定义主题数据：', this.customThemes);
-        
         const grid = this.themeGrid;
         if (!grid) {
-            console.error('找不到主题网格元素');
             return;
         }
         
@@ -169,17 +154,12 @@ export class ThemeManager {
         });
         
         // 渲染自定义主题
-        console.log('开始渲染自定义主题');
-        
         // 渲染有效的自定义主题
         this.customThemes.forEach((themeObj, idx) => {
             // 验证主题对象
             if (!themeObj || !themeObj.colors || !Array.isArray(themeObj.colors) || themeObj.colors.length !== 5) {
-                console.log(`跳过无效的主题 ${idx}`);
                 return;
             }
-            
-            console.log(`渲染自定义主题 ${idx}:`, themeObj);
             
             const btn = document.createElement('button');
             btn.className = 'theme-option custom-theme';
@@ -202,8 +182,6 @@ export class ThemeManager {
                     colors.push(color || themeObj.colors[i-1]);
                 }
             }
-            
-            console.log(`自定义主题 ${idx} 的颜色:`, colors);
             
             // 设置渐变背景
             preview.style.background = `
@@ -246,26 +224,20 @@ export class ThemeManager {
             // 高亮当前主题
             if (this.currentTheme === `custom-${idx}`) {
                 btn.classList.add('active');
-                console.log(`自定义主题 ${idx} 被高亮显示`);
             }
             
             // 切换主题
             btn.onclick = (e) => {
                 if (e.target === del) return;
-                console.log(`点击自定义主题 ${idx}`);
                 this.applyCustomTheme(themeObj);
                 this.setTheme(`custom-${idx}`);
             };
             
             grid.appendChild(btn);
         });
-        
-        console.log('主题网格渲染完成');
     }
 
     deleteCustomTheme(idx) {
-        console.log('删除自定义主题，索引：', idx);
-        
         // 如果当前用的是被删的主题，切回默认主题
         if (this.currentTheme === `custom-${idx}`) {
             // 先切换到默认主题
@@ -346,8 +318,6 @@ export class ThemeManager {
                         return response.json();
                     })
                     .then(data => {
-                        console.log('主题删除成功，后端返回：', data);
-                        
                         // 更新本地主题列表
                         if (data.current_settings && Array.isArray(data.current_settings.custom_themes)) {
                             // 过滤掉null值并创建新的主题对象
@@ -381,12 +351,9 @@ export class ThemeManager {
         // 重新渲染主题网格
         this.renderThemeGrid();
         
-        console.log('自定义主题删除完成，当前主题列表：', this.customThemes);
     }
 
     async setTheme(theme) {
-        console.log('设置主题：', theme);
-        
         this.currentTheme = theme;
         localStorage.setItem('theme', theme);
         
@@ -454,7 +421,6 @@ export class ThemeManager {
                 if (!response.ok) {
                     console.error('同步主题到后端失败');
                 } else {
-                    console.log('主题同步成功');
                 }
             }
         } catch (error) {
@@ -481,7 +447,6 @@ export class ThemeManager {
         // 重新渲染主题网格以更新显示
         this.renderThemeGrid();
         
-        console.log('主题设置完成');
     }
 
     setupCustomTheme() {
@@ -553,8 +518,6 @@ export class ThemeManager {
     }
 
     saveCustomTheme(colors) {
-        console.log('保存自定义主题：', colors);
-        
         // 创建新的主题对象
         const newTheme = {
             name: `custom_${Date.now()}`,

@@ -8,7 +8,15 @@ export default defineConfig({
       key: fs.readFileSync(path.resolve(__dirname, 'ssl/Cert/key.pem')), 
       cert: fs.readFileSync(path.resolve(__dirname, 'ssl/Cert/cert.pem')),
     },
-    host: '0.0.0.0'
+    host: '0.0.0.0',
+    port: 5713,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   base: './',
   build: {

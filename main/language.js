@@ -228,7 +228,7 @@ export class LanguageManager {
             });
 
             // 更新本地用户设置中的语言
-            if (window.userAPI && window.userAPI.isLoggedIn()) {
+            if (window.userAPI && window.userAPI.isLoggedIn && window.userAPI.isLoggedIn()) {
                 const currentUser = window.userAPI.getCurrentUser();
                 if (currentUser && currentUser.settings) {
                     // 只更新本地存储
@@ -257,7 +257,7 @@ export class LanguageManager {
             if (!key) return;
 
             //如果用户名是已经登录了，就不更新翻译
-            if(key === 'login.status.not_logged_in' && window.userAPI.isLoggedIn()){
+            if(key === 'login.status.not_logged_in' && window.userAPI && window.userAPI.isLoggedIn && window.userAPI.isLoggedIn()){
                 return;
             }
             

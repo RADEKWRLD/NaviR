@@ -250,7 +250,7 @@ async function saveShortcuts(shortcuts) {
     const authToken = localStorage.getItem('authToken');
     if (currentUser && authToken) {
         try {
-            const response = await fetch('http://localhost:5000/settings', {
+            const response = await fetch('/api/settings', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
